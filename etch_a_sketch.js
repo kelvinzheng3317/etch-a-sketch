@@ -4,10 +4,16 @@ let row;
 
 let colorType = 'single';
 let selectedColor = 'rgb(0, 0, 0)';
-let mousedown = false;
 
+// keeps track of whether mouse is down to know when to draw
+let mousedown = false;
 document.body.onmousedown = () => { mousedown = true; }
 document.body.onmouseup = () => { mousedown = false; }
+
+// allows user to change what dimensions of the grid
+let size = 16;
+const sizeInput = document.querySelector('.grid-size');
+sizeInput.addEventListener('blur', updateGridSize);
 
 /* adds event listener for color select buttons */
 document.querySelector('.selectBlack').addEventListener('click', 
@@ -34,21 +40,40 @@ function updateColor(e) {
     }
 }
 
+// clears all colors from the grid, i.e. a reset function
 function clearAll() {
     document.querySelectorAll('.unit').forEach(
         unit => { unit.style.backgroundColor = 'white'; });
 }
 
-for (let i=0; i<16; ++i) {
-    row = document.createElement('div');
-    row.classList.add('row');
-    for (let j=0; j<16; ++j) {
-        unit = document.createElement('div');
-        unit.classList.add('unit');
-        unit.setAttribute('id',`unit${16*i + j}`);
-        unit.addEventListener('mousedown', updateColor)
-        unit.addEventListener('mouseover', updateColor)
-        row.appendChild(unit);
+// updates size variable for the sake of updating grid dimensions
+function updateGridSize(e) {
+    let num = +e.target.value;
+    if (typeof num != "number" || num < 1) {
+        console.log("not a valid number");
+        return;
+    } else if (num > 100) {
+        size = 100;
+    } else {
+        size = Math.floor(num);
     }
-    grid.appendChild(row);
+    updateGrid();
 }
+
+// generates new grid based on size variable
+function updateGrid() {
+    grid.innerHTML = "";
+    grid.style.gridTemplateColumns = '1fr '.repeat(size);
+    grid.style.gridTemplateRows = '1fr '.repeat(size);
+    for (let i=0; i<size; ++i) {
+        for (let j=0; j<size; ++j) {
+            unit = document.createElement('div');
+            unit.classList.add('unit');
+            unit.addEventListener('mousedown', updateColor)
+            unit.addEventListener('mouseover', updateColor)
+            grid.appendChild(unit);
+        }
+    }
+}
+
+updateGrid();

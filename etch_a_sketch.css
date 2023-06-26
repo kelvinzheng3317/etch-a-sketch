@@ -15,6 +15,39 @@ h1 {
     display: block;
 }
 
+.main-contents {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+}
+
+/* buttons css */
+.buttons {
+    padding: 20px;
+}
+
+.main-contents button {
+    height: 45px;
+    width: 80px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.selectBlack {
+    background-color: black;
+    color: white;
+}
+
+.selectRandom {
+    background: linear-gradient(to right, rgb(245, 255, 105), rgb(156, 211, 248), rgb(255, 72, 103));
+    color: black;
+}
+
+.selectEraser {
+    background-color: rgb(255, 255, 255);
+}
+
+
 .grid {
     box-shadow: 3px 3px 5px rgb(193, 193, 193);
     height: 480px;

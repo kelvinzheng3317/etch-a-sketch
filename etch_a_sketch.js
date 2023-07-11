@@ -14,6 +14,11 @@ document.body.onmouseup = () => { mousedown = false; }
 let size = 16;
 const sizeInput = document.querySelector('.grid-size');
 sizeInput.addEventListener('blur', updateGridSize);
+sizeInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        updateGridSize(e);
+    }
+});
 
 /* adds event listener for color select buttons */
 document.querySelector('.selectBlack').addEventListener('click', 

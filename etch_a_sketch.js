@@ -53,13 +53,14 @@ function clearAll() {
 
 // updates size variable for the sake of updating grid dimensions
 function updateGridSize(e) {
-    let num = +e.target.value;
-    if (typeof num != "number" || num < 1) {
+    let num = e.target.value;
+    if (num < 1) {
         console.log("not a valid number");
         return;
     } else if (num > 100) {
         size = 100;
     } else {
+        // ensures only integer grid sizes are used
         size = Math.floor(num);
     }
     updateGrid();

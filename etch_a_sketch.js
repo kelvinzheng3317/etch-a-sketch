@@ -20,6 +20,22 @@ sizeInput.addEventListener('keypress', (e) => {
     }
 });
 
+/* code to allow color picker to select color */
+let colorPickerSpan = document.querySelector('#color-picker'); // the visible span elem
+let selectColor = document.querySelector('.selectColor'); // the actual color picker input elem
+// opens color picker when span is clicked
+colorPickerSpan.addEventListener('click', () => { selectColor.click(); })
+selectColor.addEventListener('input', (e) => {
+    colorType = 'single'; 
+    selectedColor = e.target.value;
+    colorPickerSpan.style.backgroundColor = e.target.value;
+})
+selectColor.addEventListener('change', (e) => {
+    colorType = 'single'; 
+    selectedColor = e.target.value;
+    colorPickerSpan.style.backgroundColor = e.target.value;
+})
+
 /* adds event listener for color select buttons */
 document.querySelector('.selectBlack').addEventListener('click', 
     () => { colorType = 'single'; selectedColor = 'rgb(0,0,0)'; })

@@ -33,6 +33,22 @@ h1 {
     cursor: pointer;
 }
 
+input[type=color] {
+    display: none;
+}
+
+#color-picker {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+}
+
 .selectBlack {
     background-color: black;
     color: white;
